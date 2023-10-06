@@ -10,9 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// опишем модели которые будут исопльзоваться в проекте
-//  то есть описание объектов которые ьулут в БД
-
 model User {
   id              String     @id @default(uuid())
   email           String
@@ -21,8 +18,6 @@ model User {
   createdEmployee Employee[]
 }
 
-// создание отношения между объектами
-//  то есть каждый кто зарегенится , будет возможность создать пользователя
 model Employee {
   id        String @id @default(uuid())
   firstName String
