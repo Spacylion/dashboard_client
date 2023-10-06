@@ -1,15 +1,19 @@
 import React from "react"
-import ReactDOM from "react-dom/client"
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { Paths } from "./paths.ts"
-import { Login } from "./pages/login/index.tsx"
-import { Register } from "./pages/register/index.tsx"
-import { store } from "./app/store.ts"
+import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
+import { store } from "./app/store"
 import { ConfigProvider, theme } from "antd"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { AddEmployee } from "./pages/add-employee"
+import { Employees } from "./pages/employees"
+import { Register } from "./pages/register"
+import { Login } from "./pages/login"
+import { Employee } from "./pages/employee"
+import { Status } from "./pages/status"
+import { EditEmployee } from "./pages/edit-employee"
+import { Auth } from "./features/auth/auth"
+import { Paths } from "./paths"
 import "./index.css"
-import { Auth } from "./features/auth/auth.tsx"
-import { Employees } from "./pages/employees/index.tsx"
 
 const router = createBrowserRouter([
   {
@@ -24,9 +28,28 @@ const router = createBrowserRouter([
     path: Paths.register,
     element: <Register />,
   },
+  {
+    path: Paths.employeeAdd,
+    element: <AddEmployee />,
+  },
+  {
+    path: `${Paths.employee}/:id`,
+    element: <Employee />,
+  },
+  {
+    path: `${Paths.employeeEdit}/:id`,
+    element: <EditEmployee />,
+  },
+  {
+    path: `${Paths.status}/:status`,
+    element: <Status />,
+  },
 ])
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root")!
+const root = createRoot(container)
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ConfigProvider
@@ -34,7 +57,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           algorithm: theme.darkAlgorithm,
         }}
       >
-        {/* при отрисовке приложения первым будет орисовываться Auth */}
         <Auth>
           <RouterProvider router={router} />
         </Auth>

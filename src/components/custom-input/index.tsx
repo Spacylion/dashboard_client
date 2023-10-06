@@ -1,11 +1,12 @@
 import { Form, Input } from "antd"
+
 type Props = {
   name: string
   placeholder: string
-  type: string
+  type?: string
 }
 
-export const CustomInput = ({ name, placeholder, type = "text" }: Props) => {
+export const CustomInput = ({ type = "text", name, placeholder }: Props) => {
   return (
     <Form.Item
       name={name}

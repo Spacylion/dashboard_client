@@ -1,7 +1,7 @@
-const PrismaClient = require('@prisma/client').PrismaClient
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-module.exports = {
+export default {
     prisma
 }

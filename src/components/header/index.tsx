@@ -3,7 +3,7 @@ import styles from "./index.module.css"
 import {
   LoginOutlined,
   LogoutOutlined,
-  TeamOutlined,
+  QqOutlined,
   UserOutlined,
 } from "@ant-design/icons"
 import { CustomButton } from "../custom-button"
@@ -24,7 +24,7 @@ export const Header = () => {
   return (
     <Layout.Header className={styles.header}>
       <Space>
-        <TeamOutlined className={styles.teamIcon} />
+        <QqOutlined className={styles.teamIcon} />
         <Link to={Paths.home}>
           <CustomButton type='ghost' onClick={() => null}>
             <Typography.Title level={1}>Сотрудники</Typography.Title>

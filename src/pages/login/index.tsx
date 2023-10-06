@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Card, Form, Row, Space, Typography } from "antd"
 import { Layout } from "../../components/layout"
 import { CustomInput } from "../../components/custom-input" // Corrected import
@@ -14,7 +15,7 @@ export const Login = () => {
   const navigate = useNavigate()
   // первая функуия вызывается  ,а вторая принимает результат,
   // равносильно как useState
-  const [loginUser, loginUserResult] = useLoginMutation()
+  const [loginUser] = useLoginMutation()
   const [error, setError] = useState("")
   const login = async (data: UserData) => {
     try {
@@ -38,7 +39,7 @@ export const Login = () => {
     <Layout>
       <Row align='middle' justify='center'>
         <Card title='Войдите' style={{ width: "30rem" }}>
-          <Form onFinish={login}>
+          <Form onFinish={login} style={{ width: "100%", textAlign: "right" }}>
             <CustomInput name='email' placeholder='Email' type='email' />
             <PasswordInput name='password' placeholder='Пароль' />
             <CustomButton
@@ -52,7 +53,9 @@ export const Login = () => {
           <Space direction='vertical' size='large'>
             <Typography.Text>
               Нет аккаунта?
-              <Link to={Paths.register}>Зарегистрируйтесь</Link>
+              <Link to={Paths.register} style={{ marginLeft: "10px" }}>
+                Зарегистрируйтесь
+              </Link>
             </Typography.Text>
             <ErrorMessage message={error} />
           </Space>
