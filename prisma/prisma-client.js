@@ -1,7 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-export default {
-    prisma
-}
+const user = await prisma.user.findUnique({ where: { id: 'someId' } });
+const employees = await prisma.employee.findMany({ where: { userId: 'someUserId' } });
+
+export { prisma, user, employees };
